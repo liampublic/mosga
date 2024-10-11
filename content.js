@@ -96,20 +96,16 @@ function createHighlightElement(rect, color) {
   const existingHighlights = getExistingHighlightsAtRect(rect);
   
   if (existingHighlights.length > 0) {
+    const existingColor = getComputedStyle(existingHighlights[0]).backgroundColor;
     highlight.style.cssText = `
       position: absolute;
       background-image: repeating-linear-gradient(
         45deg,
-        ${color} 0%,
-        ${color} 25%,
-        transparent 25%,
-        transparent 50%,
-        ${color} 50%,
-        ${color} 75%,
-        transparent 75%,
-        transparent 100%
+        ${color} 0px,
+        ${color} 10px,
+        ${existingColor} 10px,
+        ${existingColor} 20px
       );
-      background-size: 10px 10px;
       opacity: 0.5;
       pointer-events: none;
       top: ${rect.top + window.pageYOffset}px;
